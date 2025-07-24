@@ -6,7 +6,7 @@ import AnimatedPage from "../components/AnimatedPage";
 const LoginPage = () => {
   const [error, setError] = useState(false);
 
-  const handleLogin = (e) => {
+  const handleLogin = async(e) => {
     e.preventDefault();
     const email = e.target.email.value.trim();
     const password = e.target.password.value.trim();
@@ -15,6 +15,27 @@ const LoginPage = () => {
     } else {
       setError(false);
       // Logic to authenticate...
+
+      const UserDetails = {
+        email,
+        password
+      }
+
+      try{
+        const response = await fetch('http://localhost:5000/api/users/login', {
+          method : 'POST',
+          headers :{
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(UserDetails),
+        });
+        
+        const data = await response.json();
+        alert(data.message);
+      }catch(err){
+        console.log(err);
+        alert("Login Failed");
+      }
     }
   };
 

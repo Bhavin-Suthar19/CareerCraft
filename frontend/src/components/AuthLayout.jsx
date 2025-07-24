@@ -3,7 +3,7 @@ import React from "react";
 
 const AuthLayout = ({ children, imageSide = "left" }) => {
   return (
-    <div className="min-h-screen flex flex-col md:flex-row mt-10">
+    <div className="min-h-screen flex flex-col md:flex-row">
       {/* Image Side */}
       {imageSide === "left" && (
         <div className="hidden md:flex w-1/2 items-center justify-center bg-blue-100">

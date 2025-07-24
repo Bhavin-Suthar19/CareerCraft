@@ -6,6 +6,9 @@ import HeroSection from '../components/HeroSection'
 import FeatureSection from '../components/FeatureSection'
 import RoadmapSection from '../components/RoadmapSection'
 import TestimonialsSection from '../components/TestimonialsSection'
+import HowItWorks from '../components/HowItWorks';
+import Footer from '../components/Footer';
+import Navbar from '../components/Navbar';
 
 const LandingPage = () => {
     useEffect(() => {
@@ -20,6 +23,8 @@ const LandingPage = () => {
     <FeatureSection />
     <RoadmapSection />
     <TestimonialsSection />
+    <HowItWorks />
+    <Footer />
     </>
   )
 }

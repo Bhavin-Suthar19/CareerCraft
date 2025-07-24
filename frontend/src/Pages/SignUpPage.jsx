@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import AuthLayout from "../components/AuthLayout";
-import AnimatedPage from "../components/AnimatedPage";
+import AnimatedPage from "../components/AnimatedPage";  
 
 const SignUpPage = () => {
   const [error, setError] = useState(false);
-
-  const handleSignUp = (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
     const name = e.target.name.value.trim();
     const email = e.target.email.value.trim();
@@ -20,7 +19,32 @@ const SignUpPage = () => {
     } else {
       setError(false);
       // Logic to register...
+
+      const SignUpDetails = {
+        name,
+        email,
+        password
+      }
+
+      try{
+        const response = await fetch('http://localhost:5000/api/users/add-user', {
+        method : 'POST',
+        headers :{
+          "Content-Type" : "application/json"
+        },
+        body:JSON.stringify(SignUpDetails),
+      });
+
+      const data = await response.json();
+      console.log("Server Response", data);
+      alert("User Signed up Successfully");
+      }catch(error){
+        console.log('Error', error);
+        alert("Failed to add user");
+      }
     }
+
+
   };
 
   return (
